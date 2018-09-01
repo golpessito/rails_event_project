@@ -2,14 +2,14 @@
 
 <h1>Events</h1>
 
-<table>
-  <thead>
+<table class="table">
+  <thead class="thead-dark">
     <tr>
       <th>Name</th>
       <th>Address</th>
       <th>Start at</th>
       <th>End at</th>
-      <th>Image url</th>
+      <th>Photo</th>
       <th>Description</th>
       <th colspan="3"></th>
     </tr>
@@ -22,7 +22,10 @@
         <td><%= event.address %></td>
         <td><%= event.start_at %></td>
         <td><%= event.end_at %></td>
-        <td><%= event.image_url %></td>
+        <td><% if event.photo.present? %>
+          <%= image_tag event.photo.url(:thumb) %>
+        <% end %>
+        </td>
         <td><%= event.description %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
@@ -34,4 +37,4 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<%= button_to "New Event", new_event_path, method: "get", class:"btn-success" %>

@@ -1,48 +1,28 @@
-<div class="row mb-2">
+<% @events.each_slice(2) do |event1, event2| %>
+<div class="row mb-2 event-row">
   <div class="col-md-6">
     <div class="event">
-      <strong class="d-inline-block mb-2 text-primary">World</strong>
       <h3 class="mb-0">
-        <a class="text-dark" href="#">Featured post</a>
+        <a class="event-name" href="#"><%= event1.name %></a>
       </h3>
-      <div class="mb-1 text-muted">Nov 12</div>
-      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-        <%= image_tag("Ara_Malikian.jpg", class: "event_img") %>
+      <div class="mb-1 text-muted"><%= event1.start_at %></div>
+      <p class="card-text mb-auto event-description"><%= truncate(event1.description,length: 500) %></p>
+      <div class="event-image">
+        <%= image_tag(event1.photo.url(:medium), class: "event_img") %>
+      </div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="event">
-      <strong class="d-inline-block mb-2 text-success">Design</strong>
       <h3 class="mb-0">
-        <a class="text-dark" href="#">Post title</a>
+        <a class="event-name" href="#"><%= event2.name %></a>
       </h3>
-      <div class="mb-1 text-muted">Nov 11</div>
-      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-      <%= image_tag("Ara_Malikian.jpg", class: "event_img") %>
+      <div class="mb-1 text-muted"><%= event2.start_at %></div>
+      <p class="card-text mb-auto event-description"><%= event2.description %></p>
+      <div class="event-image">
+        <%= image_tag(event2.photo.url(:medium), class: "event_img") %>
+      </div>
     </div>
   </div>
 </div>
-<div class="row mb-2">
-  <div class="col-md-6">
-    <div class="event">
-      <strong class="d-inline-block mb-2 text-primary">World</strong>
-      <h3 class="mb-0">
-        <a class="text-dark" href="#">Featured post</a>
-      </h3>
-      <div class="mb-1 text-muted">Nov 12</div>
-      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-      <%= image_tag("Ara_Malikian.jpg", class: "event_img") %>
-    </div>
-  </div>
-  <div class="col-md-6">
-   <div class="event">
-     <strong class="d-inline-block mb-2 text-success">Design</strong>
-     <h3 class="mb-0">
-       <a class="text-dark" href="#">Post title</a>
-     </h3>
-     <div class="mb-1 text-muted">Nov 11</div>
-     <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-     <%= image_tag("Ara_Malikian.jpg", class: "event_img") %>
-   </div>
-  </div>
-</div>
+<% end %>

@@ -6,6 +6,12 @@
 </p>
 
 <p>
+<% if @event.photo.present? %>
+  <%= image_tag @event.photo.url(:medium) %>
+<% end %>
+</p>
+
+<p>
   <strong>Address:</strong>
   <%= @event.address %>
 </p>
@@ -18,11 +24,6 @@
 <p>
   <strong>End at:</strong>
   <%= @event.end_at %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @event.image_url %>
 </p>
 
 <p>
