@@ -10,8 +10,8 @@ class Ability
       can :create, Event
       can :update, Event
       can :read, :all
-    else
-      can :read, :all
+    # else
+    #   can :read, :all
     end
 
     # Define abilities for the passed in user here. For example:

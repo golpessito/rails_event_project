@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180901143854) do
+ActiveRecord::Schema.define(version: 20180901164027) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20180901143854) do
     t.string "photo_content_type"
     t.integer "photo_file_size", limit: 8
     t.datetime "photo_updated_at"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

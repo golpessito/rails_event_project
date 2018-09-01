@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   # load_and_authorize_resource
   load_and_authorize_resource
   before_action :authenticate_user!
+  before_action :require_author, only: [:edit, :update, :destroy]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
@@ -74,4 +75,9 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:name, :address, :start_at, :end_at, :description, :photo)
     end
+
+    def require_author
+      redirect_to(root_url,alert: "You are not the Author of this event.") unless @event.user == current_user
+    end
+
 end
