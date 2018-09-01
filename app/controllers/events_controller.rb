@@ -8,7 +8,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if current_user.roles.include? :admin
+     @events = Event.all
+    elsif current_user
+     @events = current_user.events
+    end
   end
 
   # GET /events/1
@@ -29,6 +33,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.user=current_user if current_user
 
     respond_to do |format|
       if @event.save
@@ -77,7 +82,7 @@ class EventsController < ApplicationController
     end
 
     def require_author
-      redirect_to(root_url,alert: "You are not the Author of this event.") unless @event.user == current_user
+      redirect_to(root_url,alert: "You are not the Author of this event.") unless (@event.user == current_user || current_user.roles.include?(:admin))
     end
 
 end

@@ -15,18 +15,20 @@
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="event">
-      <h3 class="mb-0">
-        <%= link_to event2.name, event2, class:"event-name" %>
-        <!-- <a class="event-name" href="#"><%= event2.name %></a> -->
-      </h3>
-      <div class="mb-1 text-muted"><%= event2.start_at %></div>
-      <p class="card-text mb-auto event-description"><%= event2.description %></p>
-      <div class="event-image">
-        <%= image_tag(event2.photo.url(:medium), class: "event_img") %>
+  <% if event2 %>
+    <div class="col-md-6">
+      <div class="event">
+        <h3 class="mb-0">
+          <%= link_to event2.name, event2, class:"event-name" %>
+          <!-- <a class="event-name" href="#"><%= event2.name %></a> -->
+        </h3>
+        <div class="mb-1 text-muted"><%= event2.start_at %></div>
+        <p class="card-text mb-auto event-description"><%= event2.description %></p>
+        <div class="event-image">
+          <%= image_tag(event2.photo.url(:medium), class: "event_img") %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
 <% end %>

@@ -21,22 +21,18 @@
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
         <nav class="my-2 my-md-0 mr-md-3">
-          <a class="p-2 text-dark main-menu" href="#">Features</a>
-          <a class="p-2 text-dark main-menu" href="#">Enterprise</a>
-          <a class="p-2 text-dark main-menu" href="#">Support</a>
-          <a class="p-2 text-dark main-menu" href="#">Pricing</a>
           <% if user_signed_in? %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "p-2 text-dark main-menu" %>
+              <%= link_to current_user.name, events_path, class:"btn btn-outline-warning" %>
           <% end %>
         </nav>
+        <% if user_signed_in? %>
+          <%= link_to "Create Event", new_event_path, class:"btn btn-outline-primary" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class:"btn btn-outline-primary" %>
+        <% end %>
       </div>
         <%= yield %>
     </div>
-    <!-- <footer class="blog-footer">
-      <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-      <p>
-        <a href="#">Back to top</a>
-      </p>
-    </footer> -->
   </body>
 </html>

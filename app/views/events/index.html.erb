@@ -5,6 +5,7 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
+      <th>Author</th>
       <th>Name</th>
       <th>Address</th>
       <th>Start at</th>
@@ -18,6 +19,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
+        <td><%= event.user.name %></td>
         <td><%= event.name %></td>
         <td><%= event.address %></td>
         <td><%= event.start_at %></td>
@@ -37,4 +39,4 @@
 
 <br>
 
-<%= button_to "New Event", new_event_path, method: "get", class:"btn-success" %>
+<!-- <%= button_to "New Event", new_event_path, method: "get", class:"btn-success" %> -->
