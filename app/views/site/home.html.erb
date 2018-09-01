@@ -1,9 +1,12 @@
+<% if flash[:alert] %>
+   <div class="alert alert-warning"><%= flash[:alert] %></div>
+ <% end %>
 <% @events.each_slice(2) do |event1, event2| %>
 <div class="row mb-2 event-row">
   <div class="col-md-6">
     <div class="event">
       <h3 class="mb-0">
-        <a class="event-name" href="#"><%= event1.name %></a>
+        <%= link_to event1.name, event1, class:"event-name" %>
       </h3>
       <div class="mb-1 text-muted"><%= event1.start_at %></div>
       <p class="card-text mb-auto event-description"><%= truncate(event1.description,length: 500) %></p>
@@ -15,7 +18,8 @@
   <div class="col-md-6">
     <div class="event">
       <h3 class="mb-0">
-        <a class="event-name" href="#"><%= event2.name %></a>
+        <%= link_to event2.name, event2, class:"event-name" %>
+        <!-- <a class="event-name" href="#"><%= event2.name %></a> -->
       </h3>
       <div class="mb-1 text-muted"><%= event2.start_at %></div>
       <p class="card-text mb-auto event-description"><%= event2.description %></p>
