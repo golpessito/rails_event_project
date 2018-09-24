@@ -1,9 +1,8 @@
 require 'test_helper'
 
 class SiteControllerTest < ActionDispatch::IntegrationTest
-  test "should get home" do
-    get site_home_url
+  test "should home page without login " do
+    get root_url
     assert_response :success
   end
-
 end

@@ -33,12 +33,25 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#Gem to geolocation
+#gem 'geocode'
+gem 'geocoder'
+gem 'leaflet-rails'
+
 #Gem to upload photos
 gem 'paperclip'
 
 #Gem to authenticate users with roles
 gem 'devise'
 gem 'cancancan'
+
+#Gem to background jogs
+gem 'sidekiq'
+
+#Gem to crontab tasks
+gem 'whenever', require: false
+
+gem 'i18n'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,23 +1,36 @@
 class EventsController < ApplicationController
   # load_and_authorize_resource
   load_and_authorize_resource
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :destroy]
   before_action :require_author, only: [:edit, :update, :destroy]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
+
+    #Show the events where I have attended or I going to attend
+    @my_assitances=current_user.events_to_attend
+
+    #Show my events or if you are Administrator all events
     if current_user.roles.include? :admin
      @events = Event.all
     elsif current_user
-     @events = current_user.events
+     @events = Event.where(user_id:current_user)
     end
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @rsvp = Rsvp.new
+    @attendaces = nil
+    @my_attendace = current_user.rsvps.where(event_id: @event.id) if current_user
+
+    #Show the Attendes to this event if I am the author or I am Administrator
+    if (current_user && (current_user.roles.include? :admin ) || (@event.user==current_user))
+      @attendaces = @event.rsvps
+    end
   end
 
   # GET /events/new
@@ -37,6 +50,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -54,6 +68,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
+        pp @event
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -63,10 +78,14 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
+      if @event.destroy
+        format.html { redirect_to events_url,  notice: 'Event was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to events_url, alert: @event.errors.full_messages.join(',')}
+        format.json { head :no_content }
+      end
     end
   end
 

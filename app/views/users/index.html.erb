@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<p id="event-alert"><%= alert %></p>
+<div class="users">
+  <h3>Users</h3>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Email</th>
+        <th>User</th>
+        <th>Role</th>
+        <th>Create at</th>
+        <th>Update at</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.name %></td>
+          <td><%= user.roles %></td>
+          <td><%= user.created_at %></td>
+          <td><%= user.updated_at %></td>
+          <td><%= link_to "Change Roles", edit_user_path(user), class:"btn btn-warning" %></td>
+          <td><td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger event-link" %></td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -13,4 +13,5 @@
 //= require rails-ujs
 //= require turbolinks
 //= require bootstrap.min
+//= require leaflet
 //= require_tree .

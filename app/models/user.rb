@@ -2,10 +2,19 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
+  #Owner events
   has_many :events, dependent: :destroy
 
+  #Events to attend
+  has_many :rsvps, dependent: :delete_all
+  has_many :events_to_attend, through: :rsvps
+
+  #Validations
+  validates :name, presence: true
+
+  #Authentication with roles
   ROLES = %i[admin author]
 
   def roles=(roles)

@@ -1,0 +1,14 @@
+<h2>Change Role to <%= @user.name %></h2>
+
+<%= form_for(@user) do |f| %>
+
+  <% for role in User::ROLES %>
+    <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
+    <%= label_tag "user_roles_#{role}", role.to_s.humanize %><br />
+  <% end %>
+  <%= hidden_field_tag "user[roles][]", "" %>
+
+  <div class="actions">
+    <%= f.submit "Change Role", class:"btn-success" %>
+  </div>
+<% end %>

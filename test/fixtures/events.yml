@@ -1,17 +1,28 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  address: MyString
+madrid_rio:
+  name: Madrid Rio
+  address: C/Florida, Aranjuez, Madrid
   start_at: 2018-09-01 11:14:17
-  end_at: 2018-09-01 11:14:17
-  image_url: MyString
-  description: MyString
+  end_at: 2018-09-01 12:14:17
+  photo_file_name: florida.jpg
+  description: This is the best music event ever ...
+  photo_content_type: image/jpeg
+  photo_file_size: 23296
+  latitude: 40.0321293
+  longitude: -3.6028448
+  user: david
+
 
 two:
-  name: MyString
-  address: MyString
-  start_at: 2018-09-01 11:14:17
-  end_at: 2018-09-01 11:14:17
-  image_url: MyString
-  description: MyString
+  name: Picasso
+  address: C/Goya, Madrid, Madrid
+  start_at: 2018-09-11 11:14:17
+  end_at: 2018-09-01 12:14:17
+  photo_file_name: picass.jpg
+  description: Art Gallery show one of the best comteporanean pintor ...
+  photo_content_type: image/jpeg
+  photo_file_size: 23296
+  latitude: 40.0321293
+  longitude: -3.6028448
+  user: raul

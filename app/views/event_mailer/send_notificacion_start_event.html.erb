@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Dear <%= @user.name %></h1>
+    <p>
+      This email is to reminder you that tomorrow you will attend to <%= @event.name %> event
+      at <%= @event.start_at %> in <%= @event.address %>
+    </p>
+    <p>Enjoy you event!!!</p>
+  </body>
+</html>

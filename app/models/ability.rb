@@ -9,9 +9,10 @@ class Ability
     elsif user.has_role? :author #Can't not destroy Events
       can :create, Event
       can :update, Event
-      can :read, :all
-    # else
-    #   can :read, :all
+      can :read, Event
+      # can :read, :all
+    else
+      can :read, Event
     end
 
     # Define abilities for the passed in user here. For example:

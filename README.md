@@ -1,24 +1,18 @@
 # README
+# Start REDIS
+sudo systemctl start redis
+sudo systemctl status redis
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Start sidekiq
+bundle exec sidekiq
 
-Things you may want to cover:
+# Run Nofitication One Day Before
+OneDayBeforeEventNotificationsJob.perform_later()
 
-* Ruby version
+# Run wheneverize
+bundle exec wheneverize .
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#Update crontab
+whenever --update-crontab
+bundle exec whenever crontab -l
+https://medium.com/coffee-and-codes/schedule-tasks-using-whenever-gem-ruby-on-rails-50b9af025607

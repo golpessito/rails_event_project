@@ -1,0 +1,15 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <%= link_to "Eventbright", root_path, class: "logo my-0 mr-md-auto font-weight-normal" %>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <% if user_signed_in? %>
+      <%= link_to "Events", events_path, class:"btn btn-outline-success" %>
+      <% if current_user.roles.include?(:admin) %>
+          <%= link_to "Users", users_path, class:"btn btn-outline-secondary" %>
+      <% end %>
+      <%= link_to current_user.name, edit_user_registration_path, class:"btn btn-outline-warning" %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "p-2 text-dark main-menu btn btn-outline-danger" %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class:"btn btn-outline-primary" %>
+    <% end %>
+  </nav>
+</div>

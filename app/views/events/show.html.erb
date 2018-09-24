@@ -1,35 +1,89 @@
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+<div class="row row-show-event">
+  <div class="col-8">
+    <div class="actions">
+      <% unless @my_attendace && @my_attendace.count > 0 %>
+        <%= form_with(model: @rsvp, local: true) do |form| %>
+          <%= form.hidden_field :event_id, :value => @event.id %>
+          <% if current_user %>
+            <div class="actions">
+              <%= form.submit "ATTEND", class:"btn btn-success" %>
+            </div>
+          <% else %>
+            <div class="actions">
+              <p id="alert"> If you want attend to this event, you must be logged! </p>
+              <%= form.submit "NO ATTEND", class:"btn btn-success", disabled: "false" %>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %><br/><br/>
+        <%= link_to "NO ATTEND", @my_attendace.first, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-danger event-link" %>
+      <% end %>
+    </div>
+    <div class="event-photo-show">
+      <% if @event.photo.present? %>
+        <%= image_tag @event.photo.url(:medium) %>
+      <% end %>
+    </div>
+    <h2>Description</h2>
+    <p>
+      <%= @event.description %>
+    </p>
+  </div>
+  <div class="col-4">
+    <p>
+      <h2><%= @event.name %></h2>
+    </p>
+    <p>
+        <h2 class="event-details">DETAILS</h2>
+        <!-- <button style="width: 100%;" class="btn btn-primary block"> Details </button> -->
+    </p><br>
+    <p>
+      <strong>DATE AND HOUR</strong><br>
+      <%= @event.start_at.strftime("%Y-%m-%d") %> at <%= @event.start_at.strftime("%I:%M %p") %> to <%= @event.end_at.strftime("%I:%M %p") %>
+    </p><br>
+    <p>
+      <strong>LOCATION</strong><br>
+      <%= @event.address %>
+    </p>
+    <div id="map" style="height: 220px; width: 220px"></div>
+  </div>
+</div><br/>
+<% if @attendaces %>
+  <div class="event-assistants">
+    <h2>Attendees</h2>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>User</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @attendaces.each do |attendance| %>
+          <tr>
+            <td><%= attendance.attende.name %></td>
+            <td><%= attendance.attende.email %></td>
+            <td><%= link_to "NO ATTEND", attendance, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-danger event-link" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+<% end  %>
+</div>
+  <script>
+     var map = L.map('map').setView([<%= @event.latitude %>, <%= @event.longitude %>], 13);
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+       maxZoom: 18,
+       attribution: 'Map data',
+       id: 'mapbox.streets'
+     }).addTo(map);
 
-<p>
-<% if @event.photo.present? %>
-  <%= image_tag @event.photo.url(:medium) %>
-<% end %>
-</p>
+      L.marker([<%= @event.latitude %>, <%= @event.longitude %>]).addTo(map)
+     .bindPopup('<%= @event.address %>')
+     .openPopup();
 
-<p>
-  <strong>Address:</strong>
-  <%= @event.address %>
-</p>
-
-<p>
-  <strong>Start at:</strong>
-  <%= @event.start_at %>
-</p>
-
-<p>
-  <strong>End at:</strong>
-  <%= @event.end_at %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+  </script>

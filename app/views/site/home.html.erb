@@ -5,27 +5,34 @@
 <div class="row mb-2 event-row">
   <div class="col-md-6">
     <div class="event">
-      <h3 class="mb-0">
+      <div class="event-photo">
+        <%= image_tag(event1.photo.url(:medium), class: "event_img") %>
+      </div>
+      <div class="mb-1 text-muted event-time-home">
+        <%= event1.start_at.strftime("%Y-%m-%d") %> at <%= event1.start_at.strftime("%I:%M %p") %> to <%= event1.end_at.strftime("%I:%M %p") %>
+      </div>
+      <h3 class="mb-0 event-home-h3">
         <%= link_to event1.name, event1, class:"event-name" %>
       </h3>
-      <div class="mb-1 text-muted"><%= event1.start_at %></div>
-      <p class="card-text mb-auto event-description"><%= truncate(event1.description,length: 500) %></p>
-      <div class="event-image">
-        <%= image_tag(event1.photo.url(:medium), class: "event_img") %>
+      <div class="event-address">
+        <%= event1.address %>
       </div>
     </div>
   </div>
   <% if event2 %>
     <div class="col-md-6">
       <div class="event">
-        <h3 class="mb-0">
-          <%= link_to event2.name, event2, class:"event-name" %>
-          <!-- <a class="event-name" href="#"><%= event2.name %></a> -->
-        </h3>
-        <div class="mb-1 text-muted"><%= event2.start_at %></div>
-        <p class="card-text mb-auto event-description"><%= event2.description %></p>
-        <div class="event-image">
+        <div class="event-photo">
           <%= image_tag(event2.photo.url(:medium), class: "event_img") %>
+        </div>
+        <div class="mb-1 text-muted event-time-home">
+          <%= event2.start_at.strftime("%Y-%m-%d") %> at <%= event2.start_at.strftime("%I:%M %p") %> to <%= event2.end_at.strftime("%I:%M %p") %>
+        </div>
+        <h3 class="mb-0 event-home-h3">
+          <%= link_to event2.name, event2, class:"event-name" %>
+        </h3>
+        <div class="event-address">
+          <%= event2.address %>
         </div>
       </div>
     </div>
