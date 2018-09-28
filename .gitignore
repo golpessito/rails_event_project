@@ -26,3 +26,7 @@
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+#photos from paperclips
+
+/public/system/events/*
