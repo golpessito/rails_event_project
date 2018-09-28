@@ -5,7 +5,9 @@ Rails.application.configure do
   #config.assets.digest = false
 
   config.paperclip_defaults = {
-    :preserve_files => true
+    :storage => :s3,
+    :preserve_files => true,
+    :bucket => 'railseventprojectphotos'
   }
 
   # Settings specified here will take precedence over those in config/application.rb.

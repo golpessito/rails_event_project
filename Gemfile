@@ -40,6 +40,7 @@ gem 'leaflet-rails'
 
 #Gem to upload photos
 gem 'paperclip'
+gem 'aws-sdk-s3'
 
 #Gem to authenticate users with roles
 gem 'devise'
