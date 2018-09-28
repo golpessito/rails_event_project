@@ -2,6 +2,7 @@ Rails.application.configure do
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
+  config.assets.digest = false
 
   # Settings specified here will take precedence over those in config/application.rb.
   #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }

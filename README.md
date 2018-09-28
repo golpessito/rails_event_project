@@ -16,3 +16,6 @@ bundle exec wheneverize .
 whenever --update-crontab
 bundle exec whenever crontab -l
 https://medium.com/coffee-and-codes/schedule-tasks-using-whenever-gem-ruby-on-rails-50b9af025607
+
+#Production
+/etc/cron.d/mycron
