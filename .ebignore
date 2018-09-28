@@ -30,3 +30,4 @@
 #photos from paperclips
 
 /public/system/events/*
+/public/system/events/
