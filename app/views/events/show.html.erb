@@ -74,6 +74,27 @@
 <% end  %>
 </div>
   <script>
+
+    L.Icon.Default = L.Icon.Default.extend({
+      _getIconUrl: function (name) {
+        var paths = {"icon-2x.png":"/assets/marker-icon-2x-00179c4c1ee830d3a108412ae0d294f55776cfeb085c60129a39aa6fc4ae2528.png","shadow.png":"/assets/marker-shadow-264f5c640339f042dd729062cfc04c17f8ea0f29882b538e3848ed8f10edb4da.png","icon.png":"/assets/marker-icon-574c3a5cca85f4114085b6841596d62f00d7c892c7b03f28cbfa301deb1dc437.png"};
+        return paths[name + '.png'];
+      },
+
+      _detectIconPath: function () {
+        return '';
+      }
+    });
+    L.Marker = L.Marker.extend({
+      options: {
+        icon: new L.Icon.Default()
+      }
+    });
+
+    L.marker = function(latlng, options) {
+      return new L.Marker(latlng, options);
+    }
+
      var map = L.map('map').setView([<%= @event.latitude %>, <%= @event.longitude %>], 13);
 
      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -86,24 +107,6 @@
      .bindPopup('<%= @event.address %>')
      .openPopup();
 
-      L.Icon.Default = L.Icon.Default.extend({
-        _getIconUrl: function (name) {
-          var paths = {"icon-2x.png":"/assets/marker-icon-2x-00179c4c1ee830d3a108412ae0d294f55776cfeb085c60129a39aa6fc4ae2528.png","shadow.png":"/assets/marker-shadow-264f5c640339f042dd729062cfc04c17f8ea0f29882b538e3848ed8f10edb4da.png","icon.png":"/assets/marker-icon-574c3a5cca85f4114085b6841596d62f00d7c892c7b03f28cbfa301deb1dc437.png"};
-          return paths[name + '.png'];
-        },
 
-        _detectIconPath: function () {
-          return '';
-        }
-      });
-      L.Marker = L.Marker.extend({
-        options: {
-          icon: new L.Icon.Default()
-        }
-      });
-
-      L.marker = function(latlng, options) {
-        return new L.Marker(latlng, options);
-      }
 
   </script>
