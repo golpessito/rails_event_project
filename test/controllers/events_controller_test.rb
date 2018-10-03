@@ -9,6 +9,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
      @photo = File.new(ruby_path,'rb')
      @user = users(:david)
      @author = users(:author)
+     @event=events(:madrid_rio)
   end
 
   test "user can see home page whitout login" do
@@ -32,19 +33,19 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
    end
 
    test "should not create event without login" do
-     my_event = Event.new(
-       name: "Madrid Rio4",
-       address: "C/Florida, Aranjuez, Madrid",
-       start_at: "2018-09-01 11:14:17",
-       end_at: "2018-09-01 12:14:17",
-       photo_file_name: "florida.jpg",
-       description: "This is the best music event ever ...",
-       latitude: 40.0321293,
-       longitude: -3.6028448,
-       user: @author,
-       photo: @photo)
+     # my_event = Event.new(
+     #   name: "Madrid Rio4",
+     #   address: "C/Florida, Aranjuez, Madrid",
+     #   start_at: "2018-09-01 11:14:17",
+     #   end_at: "2018-09-01 12:14:17",
+     #   photo_file_name: "florida.jpg",
+     #   description: "This is the best music event ever ...",
+     #   latitude: 40.0321293,
+     #   longitude: -3.6028448,
+     #   user: users(:author),
+     #   photo: @photo)
 
-      post events_url, params: { event: { address: my_event.address, description: my_event.description, end_at: my_event.end_at, photo_file_name: my_event.photo_file_name, name: my_event.name, start_at: my_event.start_at } }
+      post events_url, params: { event: { address: @event.address, description: @event.description, end_at: @event.end_at, photo_file_name: @event.photo_file_name, name: @event.name, start_at: @event.start_at } }
       follow_redirect!
       assert_equal "/", path
       assert_equal 200, status
