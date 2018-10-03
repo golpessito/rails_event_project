@@ -8,7 +8,7 @@ class RsvpsController < ApplicationController
   def create
     @rsvp = Rsvp.new(rsvp_params)
     @rsvp.attende=current_user
-
+    
     respond_to do |format|
       if @rsvp.save
         AttendToEventJob.perform_later(current_user,@rsvp.events_to_attend)

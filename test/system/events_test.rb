@@ -4,6 +4,6 @@ class EventsTest < ApplicationSystemTestCase
   # test "visiting the index" do
   #   visit events_url
   #
-  #   assert_selector "h1", text: "Event"
+  #   assert_selector "h2", text: "Events to attend"
   # end
 end
