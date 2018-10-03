@@ -10,18 +10,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
      @user = users(:david)
      @author = users(:author)
      @admin = users(:admin)
-
-     @event = Event.new(
-       name: "Madrid Rio4",
-       address: "C/Florida, Aranjuez, Madrid",
-       start_at: "2018-09-01 11:14:17",
-       end_at: "2018-09-01 12:14:17",
-       photo_file_name: "florida.jpg",
-       description: "This is the best music event ever ...",
-       latitude: 40.0321293,
-       longitude: -3.6028448,
-       user: @author,
-       photo: @photo)
   end
 
   test "should no get users without login" do
